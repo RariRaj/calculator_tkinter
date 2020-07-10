@@ -1,13 +1,15 @@
 from tkinter import *
 
 window = Tk()
-window.title("calculator")
-window.geometry("450x500")
+#window.title("calculator")
+window.geometry("420x460")
 
-#for picture label
-pic=PhotoImage(file='img/calculator.png')
-picLabel= Label(window,image=pic).grid(sticky="w",row=0,column=2)
+# for picture label
+pic = PhotoImage(file='img/calculator.png')
+picLabel = Label(window, image=pic).grid(sticky="w",row=0, column=2)
 
+# for heading label
+headingLabel= Label(window,text="My calculator", font="Times 18").grid(row=0,column=2,columnspan=4)
 
 
 # for Entry field(getting input from user and display result)
@@ -36,8 +38,7 @@ Button(window, text="/", font="Times 18", width=6, height=2).grid(row=3, column=
 Button(window, text="x", font="Times 18", width=6, height=2).grid(row=4, column=5)
 Button(window, text="-", font="Times 18", width=6, height=2).grid(row=5, column=5)
 Button(window, text="+", font="Times 18", width=6, height=2).grid(row=6, column=5)
-Button(window, text="Clear", font="Times 18", width=15,height=2).grid(sticky="W",row=7, column=2,columnspan=2)
-Button(window, text="=", font="Times 18", width=15, height=2).grid(row=7, column=4,columnspan=2)
-
+Button(window, text="Clear", font="Times 18", width=15, height=2).grid(row=7, column=2, columnspan=2)
+Button(window, text="=", font="Times 18", width=15, height=2).grid(row=7, column=4, columnspan=2)
 
 window.mainloop()
