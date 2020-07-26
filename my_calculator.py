@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.messagebox import *
+import math as m
 
 window = Tk()
 window.title("calculator")
@@ -150,16 +151,85 @@ btn_equal = Button(frame, text="=", command=calc, bg='light blue', activebackgro
                    height=2)
 btn_equal.grid(row=7, column=4, columnspan=2)
 
+# /////////////////////////////////////////////////////////////////////////////////////////////
+
 # code for Scientific Mode
+
+
+normal_clicked = True
+
+
+def show_btn():
+    global normal_clicked
+    if normal_clicked:
+        normal_clicked = False
+        frame.pack_forget()
+        window.geometry("420x624")
+
+        sc_frame.pack()
+        frame.pack()
+
+    else:
+        normal_clicked = True
+        sc_frame.pack_forget()
+        window.geometry("420x495")
+        frame.pack()
+        window.geometry("420x495")
+        entryText.set("")
+
+
+'''def sc_calc(event):
+    
+    sb = event.widget()
+    sc_text = sb['text']
+    exp = entryText.get()
+    if sc_text == "sinθ":
+        sc_val = str(m.sin(int(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+        
+    elif sc_text=="cosθ":
+        sc_val = str(m.cos(int(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+        
+    elif sc_text=="tanθ":
+        sc_val = str(m.tan(int(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+        
+    elif sc_text=="x!":
+        sc_val=str(m.factorial(int(exp)))'''
+
+
 # menu bar to show scientic mode
 menubar = Menu(window)
-mode = Menu(menubar,tearoff=0)
-mode.add_checkbutton(label="Scientific Calculator")
-menubar.add_cascade(label="Menu",menu=mode)
+mode = Menu(menubar, tearoff=0)
+mode.add_checkbutton(label="Scientific Calculator", command=show_btn)
+menubar.add_cascade(label="Menu", menu=mode)
 window.config(menu=menubar)
 
 # create a frame for scientic mode buttons
 sc_frame = Frame(window)
-sc_frame.pack(side=TOP)
+
+# scientific mode buttons
+
+
+sin_btn = Button(sc_frame, text="sinθ", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+sin_btn.grid(row=0, column=0)
+cos_btn = Button(sc_frame, text="cosθ", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+cos_btn.grid(row=0, column=1)
+tan_btn = Button(sc_frame, text="tanθ", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+tan_btn.grid(row=0, column=2)
+fact_btn = Button(sc_frame, text="x!", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+fact_btn.grid(row=0, column=3)
+pow_btn = Button(sc_frame, text="^", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+pow_btn.grid(row=1, column=0)
+deg_btn = Button(sc_frame, text="ToDeg", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+deg_btn.grid(row=1, column=1)
+rad_btn = Button(sc_frame, text="ToRad", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+rad_btn.grid(row=1, column=2)
+sqr_btn = Button(sc_frame, text="√", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+sqr_btn.grid(row=1, column=3)
 
 window.mainloop()
