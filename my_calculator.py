@@ -9,12 +9,14 @@ window.geometry("420x495")
 pic = PhotoImage(file='img/calculator.png')
 picLabel = Label(window, image=pic)
 picLabel.pack(side=TOP)
-#picLabel.grid(sticky="w", row=0, column=2)
+# picLabel.grid(sticky="w", row=0, column=2)
 
 # for heading label
 headingLabel = Label(window, text="MY CALCULATOR", font=("Arial", 20, 'bold'))
 headingLabel.pack(side=TOP)
-#headingLabel .grid(row=0, column=2, columnspan=4)
+
+
+# headingLabel .grid(row=0, column=2, columnspan=4)
 
 
 # method for Delete
@@ -51,8 +53,8 @@ def calc():
 entryText = StringVar()
 entry_field = Entry(window, relief=RIDGE, textvariable=entryText, justify='right', bd=26, bg='powder blue',
                     font=("Times", "24"))
-#entry_field.grid(sticky="WE", row=2, column=2, columnspan=4)
-entry_field.pack(side=TOP,ipadx=20)
+# entry_field.grid(sticky="WE", row=2, column=2, columnspan=4)
+entry_field.pack(side=TOP, ipadx=20)
 
 # Place a frame to include all buttons
 frame = Frame(window)
@@ -60,7 +62,7 @@ frame.pack(side=TOP)
 
 # for Button widgets
 btn7 = Button(frame, text="7", command=lambda: add("7"), bg='light blue', activebackground='orange', font="Times 18",
-              width=6,height=2)
+              width=6, height=2)
 
 btn7.grid(row=3, column=2)
 
@@ -148,13 +150,16 @@ btn_equal = Button(frame, text="=", command=calc, bg='light blue', activebackgro
                    height=2)
 btn_equal.grid(row=7, column=4, columnspan=2)
 
+# code for Scientific Mode
+# menu bar to show scientic mode
+menubar = Menu(window)
+mode = Menu(menubar,tearoff=0)
+mode.add_checkbutton(label="Scientific Calculator")
+menubar.add_cascade(label="Menu",menu=mode)
+window.config(menu=menubar)
 
-
-
-#code for Scientific Mode
-#create a frame for scientic mode buttons
-
-
-
+# create a frame for scientic mode buttons
+sc_frame = Frame(window)
+sc_frame.pack(side=TOP)
 
 window.mainloop()
