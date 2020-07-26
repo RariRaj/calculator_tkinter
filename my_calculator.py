@@ -162,44 +162,71 @@ normal_clicked = True
 def show_btn():
     global normal_clicked
     if normal_clicked:
-        normal_clicked = False
-        frame.pack_forget()
-        window.geometry("420x624")
 
+        frame.pack_forget()
+        window.geometry("420x680")
         sc_frame.pack()
         frame.pack()
+        normal_clicked = False
 
     else:
         normal_clicked = True
         sc_frame.pack_forget()
         window.geometry("420x495")
-        frame.pack()
-        window.geometry("420x495")
+        # frame.pack()
         entryText.set("")
 
 
-'''def sc_calc(event):
-    
-    sb = event.widget()
+def sc_calc(event):
+    sc_val = ""
+    sb = event.widget
     sc_text = sb['text']
     exp = entryText.get()
     if sc_text == "sinθ":
-        sc_val = str(m.sin(int(exp)))
+        sc_val = str(m.sin(m.radians(int((exp)))))
         entryText.set("")
         entryText.set(sc_val)
-        
-    elif sc_text=="cosθ":
-        sc_val = str(m.cos(int(exp)))
+
+    elif sc_text == "cosθ":
+        sc_val = str(m.cos(m.radians(int((exp)))))
         entryText.set("")
         entryText.set(sc_val)
-        
-    elif sc_text=="tanθ":
-        sc_val = str(m.tan(int(exp)))
+
+    elif sc_text == "tanθ":
+        sc_val = str(m.tan(m.radians(int((exp)))))
         entryText.set("")
         entryText.set(sc_val)
-        
-    elif sc_text=="x!":
-        sc_val=str(m.factorial(int(exp)))'''
+
+    elif sc_text == "x!":
+        sc_val = str(m.factorial(int(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+
+    elif sc_text == "^":
+        base, power = exp.split(",")
+        sc_val = str(m.pow(int(base), int(power)))
+        entryText.set("")
+        entryText.set(sc_val)
+
+    elif sc_text == "ToDeg":
+        sc_val = str(m.degrees(float(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+
+    elif sc_text == "ToRad":
+        sc_val = str(m.radians(float(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+
+    elif sc_text == "√":
+        sc_val = str(m.sqrt(int(exp)))
+        entryText.set("")
+        entryText.set(sc_val)
+
+    elif sc_text==",":
+        entryText.set(exp+sc_text)
+
+
 
 
 # menu bar to show scientic mode
@@ -212,7 +239,7 @@ window.config(menu=menubar)
 # create a frame for scientic mode buttons
 sc_frame = Frame(window)
 
-# scientific mode buttons
+# scientific mode buttons (action performed without using lambda function)
 
 
 sin_btn = Button(sc_frame, text="sinθ", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
@@ -223,6 +250,8 @@ tan_btn = Button(sc_frame, text="tanθ", bg='light blue', activebackground='oran
 tan_btn.grid(row=0, column=2)
 fact_btn = Button(sc_frame, text="x!", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
 fact_btn.grid(row=0, column=3)
+
+
 pow_btn = Button(sc_frame, text="^", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
 pow_btn.grid(row=1, column=0)
 deg_btn = Button(sc_frame, text="ToDeg", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
@@ -231,5 +260,27 @@ rad_btn = Button(sc_frame, text="ToRad", bg='light blue', activebackground='oran
 rad_btn.grid(row=1, column=2)
 sqr_btn = Button(sc_frame, text="√", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
 sqr_btn.grid(row=1, column=3)
+
+
+coma_btn = Button(sc_frame, text=",", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+coma_btn.grid(row=2, column=0)
+log_btn=Button(sc_frame, text="log", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+log_btn.grid(row=2, column=1)
+pi_btn=Button(sc_frame, text="∏", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+pi_btn.grid(row=2, column=2)
+flr_btn=Button(sc_frame, text="└ Floor┘", bg='light blue', activebackground='orange', font="Times 18", width=6, height=2)
+flr_btn.grid(row=2, column=3)
+
+
+# binding all scientific buttons
+sin_btn.bind("<Button-1>", sc_calc)
+cos_btn.bind("<Button-1>", sc_calc)
+tan_btn.bind("<Button-1>", sc_calc)
+fact_btn.bind("<Button-1>", sc_calc)
+pow_btn.bind("<Button-1>", sc_calc)
+deg_btn.bind("<Button-1>", sc_calc)
+rad_btn.bind("<Button-1>", sc_calc)
+sqr_btn.bind("<Button-1>", sc_calc)
+coma_btn.bind("<Button-1>", sc_calc)
 
 window.mainloop()
