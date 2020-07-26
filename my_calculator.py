@@ -152,6 +152,9 @@ btn_equal.grid(row=7, column=4, columnspan=2)
 
 
 #code for Scientific Mode
+#create a frame for scientic mode buttons
+
+
 
 
 window.mainloop()
